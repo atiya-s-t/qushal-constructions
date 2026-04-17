@@ -53,17 +53,11 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
       opacity: .03; pointer-events: none; z-index: 9999;
     }
- 
-    /* ─── PHOTO SLOT BOXES ───────────────────────────
-       Pink dashed boxes. Each one tells you:
-       • the filename to use
-       • what kind of photo goes there
-       They disappear once you add the real photo file.
-    ───────────────────────────────────────────────── */
+
     .photo-slot {
       position: relative;
       background: #160408;
-      border: 2.5px dashed #ff2d78;
+      border: none;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -80,18 +74,12 @@
     }
     .photo-slot > img + .slot-label { display: none; }
     .slot-label { position: relative; z-index: 2; pointer-events: none; }
-    .slot-file {
-      font-family: var(--ff-sub); font-size: .82rem; font-weight: 700;
-      letter-spacing: .12em; color: #ff2d78;
-      background: rgba(255,255,255,.06); border: 1px solid #ff2d78;
-      padding: .3rem .8rem; display: inline-block; margin-bottom: .4rem;
-    }
-    .slot-desc { font-size: .72rem; color: rgba(255,80,140,.65); line-height: 1.5; }
+
  
     /* ─── LOGO SLOT ───────────────────────────────── */
     .logo-slot {
       width: 42px; height: 42px;
-      border: 2px dashed #ff2d78;
+      border: none;
       overflow: hidden;
       display: flex; align-items: center; justify-content: center;
       background: #160408; flex-shrink: 0;
@@ -148,16 +136,6 @@
     .hero-bg { position: absolute; inset: 0; z-index: 0; }
     .hero-bg > img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(.38); }
  
-    /* Hero background slot hint */
-    .hero-bg-slot {
-      position: absolute; inset: 0;
-      border: 3px dashed rgba(255,45,120,.45);
-      display: flex; align-items: center; justify-content: center;
-      background: #0d0407;
-    }
-    .hero-bg-badge { border: 2px dashed rgba(255,45,120,.4); padding: 1rem 2rem; text-align: center; }
-    .hero-bg-badge .hb-file { font-family: var(--ff-sub); font-size: .88rem; font-weight: 700; letter-spacing: .15em; color: rgba(255,45,120,.8); display: block; margin-bottom: .35rem; }
-    .hero-bg-badge .hb-desc { font-size: .74rem; color: rgba(255,80,140,.45); line-height: 1.55; }
  
     .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(13,13,13,.88) 40%, rgba(13,13,13,.35) 100%); }
  
@@ -390,21 +368,12 @@
 </div>
  
  
-<!-- HERO ─────────────────────────────────────────────
-  PHOTO SLOT 1 → photo1.jpg
-  Wide landscape photo (building / site / skyline)
-  Recommended: 1920 × 1080 px
-──────────────────────────────────────────────────── -->
+
 <section id="hero">
   <div class="hero-bg">
     <img src="photo1.jpg" alt="Qushal Constructions Site"
          onerror="this.style.display='none'">
-    <div class="hero-bg-slot" id="heroBgSlot">
-      <div class="hero-bg-badge">
-        <span class="hb-file">📸  photo1.jpg</span>
-        <span class="hb-desc">Hero background<br>Wide landscape — building or site<br>1920 × 1080 px recommended</span>
-      </div>
-    </div>
+
   </div>
   <div class="hero-overlay"></div>
  
@@ -450,16 +419,6 @@
 </div>
  
  
-<!-- ABOUT ────────────────────────────────────────────
-  PHOTO SLOT 2 → photo2.jpg  (large, tall, 4:5 ratio)
-    Portrait of Shamshuddin at site or office
- 
-  PHOTO SLOT 3 → photo3.jpg  (square)
-    Shamshuddin headshot for team card
- 
-  PHOTO SLOT 4 → photo4.jpg  (square)
-    Tayyaba headshot for team card
-──────────────────────────────────────────────────── -->
 <section id="about">
   <div class="container">
     <div class="about-grid">
@@ -507,7 +466,7 @@
             <div class="photo-slot team-photo-slot">
               <img src="photo4.jpg" alt="Tayyaba S. Didagur" onerror="this.style.display='none'">
               <div class="slot-label">
-                <div class="slot-file">📸 photo4.jpg</div>
+                <div class="slot-file">📸 photo84.jpg</div>
                 <div class="slot-desc">Tayyaba<br>square photo</div>
               </div>
             </div>
@@ -565,13 +524,6 @@
 </section>
  
  
-<!-- GALLERY ───────────────────────────────────────────
-  PHOTO SLOT 5 → photo5.jpg  (large left, best photo)
-  PHOTO SLOT 6 → photo6.jpg  (top middle)
-  PHOTO SLOT 7 → photo7.jpg  (top right)
-  PHOTO SLOT 8 → photo8.jpg  (bottom middle)
-  PHOTO SLOT 9 → photo9.jpg  (bottom right)
-──────────────────────────────────────────────────── -->
 <section id="gallery">
   <div class="container">
     <div class="gallery-header reveal">
@@ -603,12 +555,6 @@
       </div>
     </div>
  
-    <div class="gallery-note">
-      📸 HOW TO ADD YOUR PHOTOS: Rename your files to
-      <strong>photo5.jpg · photo6.jpg · photo7.jpg · photo8.jpg · photo9.jpg</strong>
-      and place them in the same folder as index.html.
-      The pink dashed boxes disappear automatically once each photo is found.
-    </div>
   </div>
 </section>
  
