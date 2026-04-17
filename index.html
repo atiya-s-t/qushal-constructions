@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Qushal Constructions – Architects, Engineers & Contractors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+ 
+    :root {
+      --black:  #0d0d0d;
+      --dark:   #161616;
+      --panel:  #1e1e1e;
+      --border: #2c2c2c;
+      --gold:   #c9a84c;
+      --gold2:  #e8c96a;
+      --white:  #f4f0e8;
+      --muted:  #888;
+      --ff-head: 'Bebas Neue', sans-serif;
+      --ff-sub:  'Barlow Condensed', sans-serif;
+      --ff-body: 'Barlow', sans-serif;
+    }
+ 
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--ff-body);
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+ 
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+    .section-label {
+      font-family: var(--ff-sub);
+      font-size: .75rem; letter-spacing: .25em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: .5rem;
+    }
+    .divider {
+      width: 3rem; height: 2px;
+      background: var(--gold);
+      margin: 1.2rem 0 2rem;
+    }
+ 
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: .03; pointer-events: none; z-index: 9999;
+    }
+ 
+    /* ─── PHOTO SLOT BOXES ───────────────────────────
+       Pink dashed boxes. Each one tells you:
+       • the filename to use
+       • what kind of photo goes there
+       They disappear once you add the real photo file.
+    ───────────────────────────────────────────────── */
+    .photo-slot {
+      position: relative;
+      background: #160408;
+      border: 2.5px dashed #ff2d78;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .photo-slot > img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+    .photo-slot > img + .slot-label { display: none; }
+    .slot-label { position: relative; z-index: 2; pointer-events: none; }
+    .slot-file {
+      font-family: var(--ff-sub); font-size: .82rem; font-weight: 700;
+      letter-spacing: .12em; color: #ff2d78;
+      background: rgba(255,255,255,.06); border: 1px solid #ff2d78;
+      padding: .3rem .8rem; display: inline-block; margin-bottom: .4rem;
+    }
+    .slot-desc { font-size: .72rem; color: rgba(255,80,140,.65); line-height: 1.5; }
+ 
+    /* ─── LOGO SLOT ───────────────────────────────── */
+    .logo-slot {
+      width: 42px; height: 42px;
+      border: 2px dashed #ff2d78;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      background: #160408; flex-shrink: 0;
+    }
+    .logo-slot > img { width: 100%; height: 100%; object-fit: contain; }
+    .logo-slot > img + .logo-ph { display: none; }
+    .logo-ph {
+      font-family: var(--ff-sub); font-size: .48rem;
+      color: #ff2d78; text-align: center; line-height: 1.3; padding: 2px;
+    }
+ 
+    /* ─── NAVBAR ─────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 200;
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(13,13,13,.93);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: .8rem; line-height: 1; }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-main { font-family: var(--ff-head); font-size: 1.3rem; letter-spacing: .08em; color: var(--white); }
+    .logo-main span { color: var(--gold); }
+    .logo-sub { font-family: var(--ff-sub); font-size: .58rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+ 
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-family: var(--ff-sub); font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); transition: color .2s; }
+    .nav-links a:hover { color: var(--gold); }
+ 
+    .nav-cta { font-family: var(--ff-sub); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; padding: .5rem 1.2rem; border: 1px solid var(--gold); color: var(--gold); transition: background .2s, color .2s; }
+    .nav-cta:hover { background: var(--gold); color: var(--black); }
+ 
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+ 
+    .mobile-menu { display: none; position: fixed; top: 61px; left: 0; width: 100%; background: var(--dark); border-bottom: 1px solid var(--border); z-index: 199; padding: 1.5rem 2rem 2rem; flex-direction: column; gap: 1.4rem; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: var(--ff-sub); font-size: 1.1rem; letter-spacing: .1em; text-transform: uppercase; color: var(--white); }
+    .mobile-menu a.gold-link { color: var(--gold); }
+ 
+    /* ─── HERO ───────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      padding-top: 62px;     /* clear fixed nav — no overlap */
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+ 
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg > img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(.38); }
+ 
+    /* Hero background slot hint */
+    .hero-bg-slot {
+      position: absolute; inset: 0;
+      border: 3px dashed rgba(255,45,120,.45);
+      display: flex; align-items: center; justify-content: center;
+      background: #0d0407;
+    }
+    .hero-bg-badge { border: 2px dashed rgba(255,45,120,.4); padding: 1rem 2rem; text-align: center; }
+    .hero-bg-badge .hb-file { font-family: var(--ff-sub); font-size: .88rem; font-weight: 700; letter-spacing: .15em; color: rgba(255,45,120,.8); display: block; margin-bottom: .35rem; }
+    .hero-bg-badge .hb-desc { font-size: .74rem; color: rgba(255,80,140,.45); line-height: 1.55; }
+ 
+    .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(13,13,13,.88) 40%, rgba(13,13,13,.35) 100%); }
+ 
+    .hero-inner {
+      position: relative; z-index: 2;
+      padding: 4rem 2rem 10rem;   /* bottom padding keeps text above the stats bar */
+      max-width: 1160px; margin: 0 auto; width: 100%;
+    }
+ 
+    .hero-eyebrow { font-family: var(--ff-sub); font-size: .78rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; opacity: 0; animation: fadeUp .6s .2s forwards; }
+    .hero-title { font-family: var(--ff-head); font-size: clamp(3.5rem, 10vw, 8.5rem); line-height: .92; letter-spacing: .02em; margin-bottom: 2rem; opacity: 0; animation: fadeUp .7s .35s forwards; }
+    .hero-title .outline { -webkit-text-stroke: 1.5px var(--white); color: transparent; }
+    .hero-sub { max-width: 480px; font-size: 1rem; line-height: 1.8; color: rgba(244,240,232,.68); margin-bottom: 2.5rem; opacity: 0; animation: fadeUp .7s .5s forwards; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp .7s .65s forwards; }
+ 
+    .btn-primary { font-family: var(--ff-sub); font-size: .85rem; letter-spacing: .14em; text-transform: uppercase; padding: .9rem 2.2rem; background: var(--gold); color: var(--black); font-weight: 700; transition: background .2s, transform .15s; display: inline-block; }
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+    .btn-outline { font-family: var(--ff-sub); font-size: .85rem; letter-spacing: .14em; text-transform: uppercase; padding: .9rem 2.2rem; border: 1px solid rgba(244,240,232,.35); color: var(--white); transition: border-color .2s, color .2s, transform .15s; display: inline-block; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+ 
+    .hero-stats { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,.1); background: rgba(13,13,13,.75); backdrop-filter: blur(8px); opacity: 0; animation: fadeIn 1s .9s forwards; }
+    .stat-item { padding: 1.4rem 2rem; border-right: 1px solid rgba(255,255,255,.08); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: var(--ff-head); font-size: 2rem; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-top: .3rem; }
+ 
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+ 
+    /* ─── MARQUEE ─────────────────────────────────── */
+    .marquee-wrap { overflow: hidden; background: var(--gold); padding: .65rem 0; border-bottom: 1px solid var(--border); }
+    .marquee-track { display: flex; animation: marquee 28s linear infinite; white-space: nowrap; }
+    .marquee-track span { font-family: var(--ff-sub); font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--black); padding: 0 2.5rem; font-weight: 700; }
+    .marquee-track span::before { content: '◆'; margin-right: 2.5rem; opacity: .4; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+ 
+    /* ─── ABOUT ───────────────────────────────────── */
+    #about { padding: 8rem 0; }
+ 
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+ 
+    .about-visual { position: relative; }
+ 
+    .about-photo-frame {
+      position: relative;
+      aspect-ratio: 4/5;
+    }
+    .about-photo-frame::before { content: ''; position: absolute; top: -8px; left: -8px; width: 50px; height: 50px; border-top: 3px solid var(--gold); border-left: 3px solid var(--gold); z-index: 2; }
+    .about-photo-frame::after  { content: ''; position: absolute; bottom: -8px; right: -8px; width: 50px; height: 50px; border-bottom: 3px solid var(--gold); border-right: 3px solid var(--gold); z-index: 2; }
+ 
+    .about-photo-frame .photo-slot {
+      width: 100%; height: 100%;
+      border: 1px solid var(--border);
+    }
+ 
+    .about-badge { position: absolute; bottom: -2rem; right: -2rem; width: 110px; height: 110px; background: var(--gold); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 3; }
+    .about-badge strong { font-family: var(--ff-head); font-size: 2.2rem; color: var(--black); line-height: 1; }
+    .about-badge small { font-family: var(--ff-sub); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--black); text-align: center; line-height: 1.4; }
+ 
+    .about-text { padding-top: .5rem; }
+    .about-text h2 { font-family: var(--ff-head); font-size: clamp(2.2rem, 4vw, 3.5rem); line-height: 1; margin-bottom: 1.5rem; }
+    .about-text p { font-size: .95rem; line-height: 1.85; color: rgba(244,240,232,.65); margin-bottom: 1.1rem; }
+ 
+    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 3rem; }
+    .team-card { border: 1px solid var(--border); background: var(--panel); overflow: hidden; }
+    .team-photo-slot { width: 100%; aspect-ratio: 1/1; }
+    .team-info { padding: .9rem 1rem 1.1rem; }
+    .team-role { font-family: var(--ff-sub); font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+    .team-name { font-family: var(--ff-sub); font-size: 1rem; font-weight: 700; margin-top: .2rem; }
+    .team-qual { font-size: .75rem; color: var(--muted); margin-top: .1rem; }
+ 
+    /* ─── SERVICES ────────────────────────────────── */
+    #services { padding: 8rem 0; background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; flex-wrap: wrap; gap: 1rem; }
+    .services-header h2 { font-family: var(--ff-head); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .service-card { background: var(--dark); padding: 2.8rem 2rem; position: relative; overflow: hidden; transition: background .3s; cursor: default; }
+    .service-card::before { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .4s ease; }
+    .service-card:hover { background: #1a1a1a; }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-num { font-family: var(--ff-head); font-size: 3rem; color: rgba(201,168,76,.1); line-height: 1; margin-bottom: .5rem; }
+    .service-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+    .service-title { font-family: var(--ff-sub); font-size: 1.05rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; margin-bottom: .8rem; }
+    .service-desc { font-size: .87rem; line-height: 1.78; color: rgba(244,240,232,.48); }
+ 
+    /* ─── PROCESS ─────────────────────────────────── */
+    #process { padding: 8rem 0; }
+    .process-header { text-align: center; margin-bottom: 5rem; }
+    .process-header h2 { font-family: var(--ff-head); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1; }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; position: relative; }
+    .process-steps::before { content: ''; position: absolute; top: 2.2rem; left: 12.5%; right: 12.5%; height: 1px; background: var(--border); z-index: 0; }
+    .step { text-align: center; padding: 0 1rem; position: relative; z-index: 1; }
+    .step-circle { width: 4.5rem; height: 4.5rem; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; background: var(--black); font-family: var(--ff-head); font-size: 1.4rem; color: var(--gold); transition: background .3s, border-color .3s, color .3s; }
+    .step:hover .step-circle { background: var(--gold); border-color: var(--gold); color: var(--black); }
+    .step-title { font-family: var(--ff-sub); font-size: .95rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .6rem; }
+    .step-desc { font-size: .82rem; color: var(--muted); line-height: 1.68; }
+ 
+    /* ─── GALLERY ─────────────────────────────────── */
+    #gallery { padding: 8rem 0; background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .gallery-header { margin-bottom: 3rem; }
+    .gallery-header h2 { font-family: var(--ff-head); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1; }
+ 
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 250px 250px; gap: 5px; }
+    .gallery-item { position: relative; overflow: hidden; }
+    .gallery-item:first-child { grid-row: span 2; }
+    .gallery-item .photo-slot { width: 100%; height: 100%; }
+    .gallery-item .photo-slot > img { transition: transform .5s ease; }
+    .gallery-item:hover .photo-slot > img { transform: scale(1.05); }
+    .gallery-tag { position: absolute; bottom: 0; left: 0; right: 0; padding: .5rem 1rem; background: linear-gradient(to top, rgba(13,13,13,.85), transparent); font-family: var(--ff-sub); font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(244,240,232,.75); opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; z-index: 2; }
+    .gallery-item:hover .gallery-tag { opacity: 1; transform: none; }
+ 
+    .gallery-note { margin-top: 1.5rem; padding: .9rem 1.2rem; background: #160508; border: 1.5px dashed #ff2d78; font-family: var(--ff-sub); font-size: .82rem; letter-spacing: .06em; color: rgba(255,80,140,.7); line-height: 1.7; }
+ 
+    /* ─── CONTACT ─────────────────────────────────── */
+    #contact { padding: 8rem 0; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem; align-items: start; }
+    .contact-info h2 { font-family: var(--ff-head); font-size: clamp(2.5rem, 4vw, 3.8rem); line-height: 1; margin-bottom: 2.5rem; }
+    .contact-item { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.6rem; padding-bottom: 1.6rem; border-bottom: 1px solid var(--border); }
+    .contact-item:last-of-type { border-bottom: none; }
+    .contact-icon { width: 2.4rem; height: 2.4rem; min-width: 2.4rem; background: var(--panel); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: .95rem; }
+    .contact-label { font-family: var(--ff-sub); font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: .25rem; }
+    .contact-value { font-size: .9rem; line-height: 1.72; color: rgba(244,240,232,.78); }
+    .contact-value a { transition: color .2s; }
+    .contact-value a:hover { color: var(--gold); }
+ 
+    .contact-form { display: flex; flex-direction: column; gap: 1.1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    .form-group { display: flex; flex-direction: column; gap: .4rem; }
+    .form-group label { font-family: var(--ff-sub); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+    .form-group input, .form-group select, .form-group textarea { background: var(--panel); border: 1px solid var(--border); color: var(--white); padding: .9rem 1rem; font-family: var(--ff-body); font-size: .9rem; outline: none; transition: border-color .2s; resize: vertical; }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(136,136,136,.5); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+    .form-group select option { background: var(--dark); }
+    .form-group textarea { min-height: 120px; }
+    .form-submit { font-family: var(--ff-sub); font-size: .85rem; letter-spacing: .15em; text-transform: uppercase; padding: 1rem 2.2rem; background: var(--gold); color: var(--black); font-weight: 700; border: none; cursor: pointer; transition: background .2s, transform .15s; align-self: flex-start; }
+    .form-submit:hover { background: var(--gold2); transform: translateY(-2px); }
+    .form-success { display: none; padding: 1rem; border: 1px solid var(--gold); color: var(--gold); font-family: var(--ff-sub); font-size: .9rem; letter-spacing: .06em; }
+ 
+    /* ─── FOOTER ──────────────────────────────────── */
+    footer { background: var(--dark); border-top: 1px solid var(--border); padding: 4rem 0 2rem; }
+    .footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 3rem; margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--border); }
+    .footer-logo { display: flex; align-items: center; gap: .8rem; margin-bottom: .75rem; }
+    .footer-logo-text .logo-main { font-family: var(--ff-head); font-size: 1.2rem; letter-spacing: .08em; color: var(--white); }
+    .footer-logo-text .logo-main span { color: var(--gold); }
+    .footer-logo-text .logo-sub { font-family: var(--ff-sub); font-size: .56rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+    .footer-brand p { font-size: .84rem; color: var(--muted); line-height: 1.78; }
+    .footer-col h4 { font-family: var(--ff-sub); font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+    .footer-col ul li a { font-size: .84rem; color: var(--muted); transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { font-size: .76rem; color: var(--muted); }
+    .footer-regd { font-size: .72rem; color: rgba(136,136,136,.5); font-style: italic; }
+ 
+    /* ─── SCROLL REVEAL ───────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+ 
+    /* ─── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 960px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .about-grid { grid-template-columns: 1fr; gap: 4rem; }
+      .about-visual { max-width: 380px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 3rem; }
+      .process-steps::before { display: none; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-item { height: 210px; }
+      .gallery-item:first-child { grid-row: span 1; }
+      .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item { height: 210px; }
+      .gallery-item:first-child { grid-row: span 1; }
+      .footer-top { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+      .team-grid { grid-template-columns: 1fr; max-width: 280px; }
+      .about-visual { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+ 
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <!--
+      LOGO SLOT — save your logo as logo.png
+      (PNG, no background) in the same folder.
+      The pink box disappears once the file is found.
+    -->
+    <div class="logo-slot">
+      <img src="logo.png" alt="Qushal Logo" onerror="this.style.display='none'">
+      <div class="logo-ph">LOGO<br>logo.png</div>
+    </div>
+    <div class="logo-text">
+      <div class="logo-main">QUSHAL <span>CONSTRUCTIONS</span></div>
+      <div class="logo-sub">Architects · Engineers · Contractors</div>
+    </div>
+  </a>
+ 
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#gallery">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+ 
+  <a href="#contact" class="nav-cta">Get a Quote</a>
+ 
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+ 
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about"    onclick="closeMobile()">About</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#process"  onclick="closeMobile()">Process</a>
+  <a href="#gallery"  onclick="closeMobile()">Projects</a>
+  <a href="#contact"  onclick="closeMobile()">Contact</a>
+  <a href="#contact"  onclick="closeMobile()" class="gold-link">Get a Quote →</a>
+</div>
+ 
+ 
+<!-- HERO ─────────────────────────────────────────────
+  PHOTO SLOT 1 → photo1.jpg
+  Wide landscape photo (building / site / skyline)
+  Recommended: 1920 × 1080 px
+──────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-bg">
+    <img src="photo1.jpg" alt="Qushal Constructions Site"
+         onerror="this.style.display='none'">
+    <div class="hero-bg-slot" id="heroBgSlot">
+      <div class="hero-bg-badge">
+        <span class="hb-file">📸  photo1.jpg</span>
+        <span class="hb-desc">Hero background<br>Wide landscape — building or site<br>1920 × 1080 px recommended</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+ 
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Dharwad, Karnataka &nbsp;·&nbsp; Architects, Engineers &amp; Contractors</p>
+    <h1 class="hero-title">
+      BUILD<br>
+      <span class="outline">SOMETHING</span><br>
+      LASTING
+    </h1>
+    <p class="hero-sub">
+      M/s Qushal Constructions delivers complete architecture, engineering, and contracting — from planning permissions to turnkey handover — for residential, commercial, institutional, and industrial projects.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Start Your Project</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+ 
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">25+</div>
+      <div class="stat-label">Years of Experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3-in-1</div>
+      <div class="stat-label">Architect + Engineer + Contractor</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">360°</div>
+      <div class="stat-label">Full Project Management</div>
+    </div>
+  </div>
+</section>
+ 
+ 
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Residential Buildings</span><span>Commercial Complexes</span><span>Institutional Projects</span><span>Industrial Construction</span><span>Turnkey Projects</span><span>Planning &amp; Permissions</span><span>Architectural Design</span><span>Structural Engineering</span>
+    <span>Residential Buildings</span><span>Commercial Complexes</span><span>Institutional Projects</span><span>Industrial Construction</span><span>Turnkey Projects</span><span>Planning &amp; Permissions</span><span>Architectural Design</span><span>Structural Engineering</span>
+  </div>
+</div>
+ 
+ 
+<!-- ABOUT ────────────────────────────────────────────
+  PHOTO SLOT 2 → photo2.jpg  (large, tall, 4:5 ratio)
+    Portrait of Shamshuddin at site or office
+ 
+  PHOTO SLOT 3 → photo3.jpg  (square)
+    Shamshuddin headshot for team card
+ 
+  PHOTO SLOT 4 → photo4.jpg  (square)
+    Tayyaba headshot for team card
+──────────────────────────────────────────────────── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+ 
+      <div class="about-visual reveal">
+        <div class="about-photo-frame">
+          <div class="photo-slot">
+            <img src="photo2.jpg" alt="Shamshuddin Didagur" onerror="this.style.display='none'">
+            <div class="slot-label">
+              <div class="slot-file">📸 photo2.jpg</div>
+              <div class="slot-desc">Portrait of Shamshuddin<br>(tall · 4:5 ratio)</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-badge">
+          <strong>25+</strong>
+          <small>Years of<br>Excellence</small>
+        </div>
+      </div>
+ 
+      <div class="about-text reveal">
+        <p class="section-label">Who We Are</p>
+        <h2>Engineering Trust,<br>Building Futures</h2>
+        <div class="divider"></div>
+        <p>M/s Qushal Constructions is a Dharwad-based firm of architects, engineers, and contractors with over 25 years of delivering quality construction across Karnataka. We handle every phase — from concept and planning permissions to structural execution and final handover.</p>
+        <p>Our registered office is at F-2, 1st Floor, Devaki Annex, Near K.C. Park Post Office, Haliyal Road, Dharwad. We are equipped to take on projects of any scale across all building categories.</p>
+ 
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="photo-slot team-photo-slot">
+              <img src="photo3.jpg" alt="Shamshuddin Didagur" onerror="this.style.display='none'">
+              <div class="slot-label">
+                <div class="slot-file">📸 photo3.jpg</div>
+                <div class="slot-desc">Shamshuddin<br>square photo</div>
+              </div>
+            </div>
+            <div class="team-info">
+              <div class="team-role">Proprietor &amp; Founder</div>
+              <div class="team-name">Shamshuddin Didagur</div>
+              <div class="team-qual">Engineer · 25+ Years Experience</div>
+            </div>
+          </div>
+ 
+          <div class="team-card">
+            <div class="photo-slot team-photo-slot">
+              <img src="photo4.jpg" alt="Tayyaba S. Didagur" onerror="this.style.display='none'">
+              <div class="slot-label">
+                <div class="slot-file">📸 photo4.jpg</div>
+                <div class="slot-desc">Tayyaba<br>square photo</div>
+              </div>
+            </div>
+            <div class="team-info">
+              <div class="team-role">Consulting Architect</div>
+              <div class="team-name">Tayyaba S. Didagur</div>
+              <div class="team-qual">M.Arch.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+</section>
+ 
+ 
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <div>
+        <p class="section-label">What We Build</p>
+        <h2>Our Services</h2>
+      </div>
+      <a href="#contact" class="btn-outline">Request Consultation</a>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal"><div class="service-num">01</div><div class="service-icon">📐</div><div class="service-title">Planning, Permission &amp; Construction</div><div class="service-desc">Complete support from site evaluation and architectural drawings to obtaining all necessary government permissions and executing the full construction plan.</div></div>
+      <div class="service-card reveal"><div class="service-num">02</div><div class="service-icon">🏠</div><div class="service-title">Residential Buildings</div><div class="service-desc">Custom homes and multi-unit residential complexes designed for comfort, functionality, and lasting quality — tailored to your lifestyle and budget.</div></div>
+      <div class="service-card reveal"><div class="service-num">03</div><div class="service-icon">🏢</div><div class="service-title">Commercial Buildings</div><div class="service-desc">Offices, retail spaces, and mixed-use developments built to meet commercial requirements with modern layouts and solid structural integrity.</div></div>
+      <div class="service-card reveal"><div class="service-num">04</div><div class="service-icon">🏫</div><div class="service-title">Institutional Construction</div><div class="service-desc">Schools, hospitals, government facilities, and public infrastructure — built to strict safety standards with an emphasis on longevity and compliance.</div></div>
+      <div class="service-card reveal"><div class="service-num">05</div><div class="service-icon">🏭</div><div class="service-title">Industrial Construction</div><div class="service-desc">Factories, warehouses, and industrial facilities engineered for operational efficiency, regulatory compliance, and large-scale structural demands.</div></div>
+      <div class="service-card reveal"><div class="service-num">06</div><div class="service-icon">🔑</div><div class="service-title">Turnkey Projects</div><div class="service-desc">End-to-end project management from design and permits through construction, finishing, and final handover — one point of accountability for everything.</div></div>
+    </div>
+  </div>
+</section>
+ 
+ 
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="process-header reveal">
+      <p class="section-label">How We Work</p>
+      <h2>Our Process</h2>
+      <div class="divider" style="margin: 1.2rem auto 0;"></div>
+    </div>
+    <div class="process-steps">
+      <div class="step reveal"><div class="step-circle">01</div><div class="step-title">Consultation</div><div class="step-desc">We meet to understand your vision, site conditions, budget, and timeline in detail.</div></div>
+      <div class="step reveal"><div class="step-circle">02</div><div class="step-title">Design &amp; Planning</div><div class="step-desc">Our architect and engineer develop detailed drawings and structural plans tailored to your needs.</div></div>
+      <div class="step reveal"><div class="step-circle">03</div><div class="step-title">Permissions</div><div class="step-desc">We handle all government approvals, building permits, and regulatory clearances on your behalf.</div></div>
+      <div class="step reveal"><div class="step-circle">04</div><div class="step-title">Build &amp; Handover</div><div class="step-desc">On-site execution with quality checks at every stage, ending in a complete turnkey handover.</div></div>
+    </div>
+  </div>
+</section>
+ 
+ 
+<!-- GALLERY ───────────────────────────────────────────
+  PHOTO SLOT 5 → photo5.jpg  (large left, best photo)
+  PHOTO SLOT 6 → photo6.jpg  (top middle)
+  PHOTO SLOT 7 → photo7.jpg  (top right)
+  PHOTO SLOT 8 → photo8.jpg  (bottom middle)
+  PHOTO SLOT 9 → photo9.jpg  (bottom right)
+──────────────────────────────────────────────────── -->
+<section id="gallery">
+  <div class="container">
+    <div class="gallery-header reveal">
+      <p class="section-label">Our Work</p>
+      <h2>Project Gallery</h2>
+      <div class="divider"></div>
+    </div>
+ 
+    <div class="gallery-grid reveal">
+      <div class="gallery-item">
+        <div class="photo-slot"><img src="photo5.jpg" alt="" onerror="this.style.display='none'"><div class="slot-label"><div class="slot-file">📸 photo5.jpg</div><div class="slot-desc">Best / featured photo<br>Large left column</div></div></div>
+        <div class="gallery-tag">Featured Project</div>
+      </div>
+      <div class="gallery-item">
+        <div class="photo-slot"><img src="photo6.jpg" alt="" onerror="this.style.display='none'"><div class="slot-label"><div class="slot-file">📸 photo6.jpg</div><div class="slot-desc">Project photo</div></div></div>
+        <div class="gallery-tag">Commercial Build</div>
+      </div>
+      <div class="gallery-item">
+        <div class="photo-slot"><img src="photo7.jpg" alt="" onerror="this.style.display='none'"><div class="slot-label"><div class="slot-file">📸 photo7.jpg</div><div class="slot-desc">Project photo</div></div></div>
+        <div class="gallery-tag">Residential Build</div>
+      </div>
+      <div class="gallery-item">
+        <div class="photo-slot"><img src="photo8.jpg" alt="" onerror="this.style.display='none'"><div class="slot-label"><div class="slot-file">📸 photo8.jpg</div><div class="slot-desc">Project photo</div></div></div>
+        <div class="gallery-tag">In Progress</div>
+      </div>
+      <div class="gallery-item">
+        <div class="photo-slot"><img src="photo9.jpg" alt="" onerror="this.style.display='none'"><div class="slot-label"><div class="slot-file">📸 photo9.jpg</div><div class="slot-desc">Project photo</div></div></div>
+        <div class="gallery-tag">Industrial Project</div>
+      </div>
+    </div>
+ 
+    <div class="gallery-note">
+      📸 HOW TO ADD YOUR PHOTOS: Rename your files to
+      <strong>photo5.jpg · photo6.jpg · photo7.jpg · photo8.jpg · photo9.jpg</strong>
+      and place them in the same folder as index.html.
+      The pink dashed boxes disappear automatically once each photo is found.
+    </div>
+  </div>
+</section>
+ 
+ 
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <p class="section-label">Get In Touch</p>
+        <h2>Let's Build<br>Together</h2>
+        <div class="divider"></div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div><div class="contact-label">Registered Office</div><div class="contact-value">F-2, 1st Floor, Devaki Annex,<br>Near K.C. Park Post Office,<br>Haliyal Road, Dharwad, Karnataka</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div><div class="contact-label">Phone Numbers</div><div class="contact-value"><a href="tel:+919845936192">+91 98459 36192</a><br><a href="tel:+918073455630">+91 80734 55630</a><br><a href="tel:08362746192">0836-2746192</a></div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div><div class="contact-label">Email</div><div class="contact-value"><a href="mailto:sd8734@gmail.com">sd8734@gmail.com</a></div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div><div class="contact-label">Office Hours</div><div class="contact-value">Monday – Saturday: 9:00 AM – 6:00 PM</div></div>
+        </div>
+      </div>
+ 
+      <div class="reveal">
+        <p class="section-label">Send a Message</p>
+        <p style="font-size:.9rem; color:var(--muted); margin-bottom:1.6rem; line-height:1.75;">Tell us about your project and we'll get back to you within 24 hours.</p>
+        <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group"><label for="fname">Full Name *</label><input type="text" id="fname" placeholder="Your name" required></div>
+            <div class="form-group"><label for="fphone">Phone Number *</label><input type="tel" id="fphone" placeholder="+91 XXXXX XXXXX" required></div>
+          </div>
+          <div class="form-group"><label for="femail">Email Address</label><input type="email" id="femail" placeholder="you@example.com"></div>
+          <div class="form-group">
+            <label for="fproject">Project Type *</label>
+            <select id="fproject" required>
+              <option value="" disabled selected>Select a project type</option>
+              <option>Residential Building</option><option>Commercial Building</option><option>Institutional Construction</option><option>Industrial Construction</option><option>Turnkey Project</option><option>Planning &amp; Permissions</option><option>Other</option>
+            </select>
+          </div>
+          <div class="form-group"><label for="fmessage">Project Details</label><textarea id="fmessage" placeholder="Describe your project, location, approximate size, or any specific requirements..."></textarea></div>
+          <button type="submit" class="form-submit" id="submitBtn">Send Enquiry →</button>
+          <div class="form-success" id="formSuccess">✓ &nbsp; Thank you! We'll be in touch within 24 hours.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="logo-slot">
+            <img src="logo.png" alt="Qushal Logo" onerror="this.style.display='none'">
+            <div class="logo-ph">LOGO</div>
+          </div>
+          <div class="footer-logo-text">
+            <div class="logo-main">QUSHAL <span>CONSTRUCTIONS</span></div>
+            <div class="logo-sub">Architects · Engineers · Contractors</div>
+          </div>
+        </div>
+        <p>Building quality structures across Karnataka.<br>Prop. Shamshuddin Didagur, Engineer.<br>Dharwad, Karnataka.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Residential Buildings</a></li>
+          <li><a href="#services">Commercial Buildings</a></li>
+          <li><a href="#services">Institutional Construction</a></li>
+          <li><a href="#services">Industrial Construction</a></li>
+          <li><a href="#services">Turnkey Projects</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+919845936192">+91 98459 36192</a></li>
+          <li><a href="tel:+918073455630">+91 80734 55630</a></li>
+          <li><a href="tel:08362746192">0836-2746192</a></li>
+          <li><a href="mailto:sd8734@gmail.com">sd8734@gmail.com</a></li>
+          <li><a href="#contact">Send an Enquiry</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 M/s Qushal Constructions. All rights reserved.</p>
+      <p class="footer-regd">Consulting Architect: Tayyaba S. Didagur, M.Arch.</p>
+    </div>
+  </div>
+</footer>
+ 
+ 
+<script>
+  // Hamburger
+  const hamburger  = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', function () { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+  function closeMobile() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+ 
+  // Scroll reveal
+  const ro = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(function (el) { ro.observe(el); });
+ 
+  // Active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', function () {
+    let cur = '';
+    sections.forEach(function (s) { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+    navLinks.forEach(function (l) { l.style.color = l.getAttribute('href') === '#' + cur ? 'var(--gold)' : ''; });
+  });
+ 
+  // Contact form
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const suc = document.getElementById('formSuccess');
+    btn.textContent = 'Sending…'; btn.disabled = true;
+    setTimeout(function () {
+      document.getElementById('contactForm').reset();
+      suc.style.display = 'block'; btn.textContent = 'Send Enquiry →'; btn.disabled = false;
+      setTimeout(function () { suc.style.display = 'none'; }, 5000);
+    }, 1200);
+  }
+ 
+  // Hide photo slot labels when photo loads
+  document.querySelectorAll('.photo-slot > img').forEach(function (img) {
+    function hide() { var l = img.parentElement.querySelector('.slot-label'); if (l) l.style.display = 'none'; }
+    if (img.complete && img.naturalWidth > 0) hide(); else img.addEventListener('load', hide);
+  });
+ 
+  // Hide logo placeholder when logo loads
+  document.querySelectorAll('.logo-slot > img').forEach(function (img) {
+    function hide() { var p = img.parentElement.querySelector('.logo-ph'); if (p) p.style.display = 'none'; }
+    if (img.complete && img.naturalWidth > 0) hide(); else img.addEventListener('load', hide);
+  });
+ 
+  // Hide hero bg slot hint when photo1.jpg loads
+  var h1 = document.querySelector('.hero-bg > img');
+  if (h1) {
+    function hideHero() { var s = document.getElementById('heroBgSlot'); if (s) s.style.display = 'none'; }
+    if (h1.complete && h1.naturalWidth > 0) hideHero(); else h1.addEventListener('load', hideHero);
+  }
+</script>
+</body>
+</html>
